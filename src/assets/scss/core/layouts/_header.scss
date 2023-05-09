@@ -1,0 +1,217 @@
+.logo{
+    &-link{
+        position: relative;
+        display: inline-block;
+        align-items: center;
+        transition: all 0.4s;
+        &:hover{
+          transform: scale(0.96);
+        }
+    }
+    &-dark{
+        opacity: 1;
+        .tc-light &,.is-dark &,.is-theme &{
+            opacity: 0;
+        }
+    }
+    &-light{
+        opacity: 0;
+        .tc-light &,.is-dark &,.is-theme &{
+            opacity: 1;
+        }
+    }
+    &-img{
+        max-height: $logo-height;
+        &-lg{
+            max-height: $logo-height-lg;
+        }
+        &-sm{
+            max-height: $logo-height-sm;
+        }
+        &-icon{
+            max-height: $logo-height-icon;
+        }
+        &:not(:first-child){
+            position: absolute;
+            @if($rtl==false){
+                left: 0;
+            }
+            @if($rtl==true){
+                right: 0;
+            }
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.mn{
+    &-header{
+        background: $header-bg-color;
+        border-bottom: 1px solid $header-border-bottom;
+        padding: 0 $header-main-gap-x;
+        position: relative;
+        z-index: 1010;
+        &-fixed{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            min-width: $header-min-width;
+            + .mn-content {
+                margin-top: $header-height;
+                position: relative;
+            }
+        }
+        &-wrap{
+            display: flex;
+            justify-content: space-between;
+            margin: 0 -.25rem;
+            > *{
+                padding:0 .25rem;
+            }
+        }
+        &-right{
+            align-items: center;
+            justify-content: flex-end;
+        }
+        &-center{
+            justify-content: center;
+        }
+        &-tools{
+            width: 192px;
+            z-index: 1011;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            @include media-breakpoint-down(lg){
+              width: 120px;
+            }
+        }
+        &-brand{
+            flex-shrink: 0;
+            padding-top: $header-main-gap-y;
+            padding-bottom: $header-main-gap-y;
+        }
+    }
+    &-header-line{
+        background-color: $minima-bg;
+        width: 100%;
+        // height: 20px;
+        display: block;
+        position: fixed;
+        top: 5rem;
+        z-index: 1009;
+        color: $white;
+        font-size: 0.8rem;
+        padding: 6px 0px;
+        box-shadow: 0 2px 6px 0 rgb(0 0 0 / 10%);
+        .alignright{
+            float: right;
+            @media (max-width:575px){
+                float: left;
+                width: 100%;
+                opacity: 0.5;
+            }
+        }
+    }
+    &-header-ping{
+      width: 100%;
+      // height: 20px;
+      display: block;
+      position: fixed;
+      top: 7rem;
+      z-index: 1009;
+      color: $minima-copy;
+      font-size: 0.8rem;
+      padding: 6px 0px;
+      text-align: right;
+  }
+    &-quick{
+        &-nav{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            & > li{
+                margin-left: auto;
+                padding: 0;
+                list-style: none;
+                cursor: pointer;
+                & > div{
+                  background-color: $minima-quick-nav;
+                  width: 45px;
+                  height: 45px;
+                  color: $white;
+                  border-radius: $border-radius;
+                  transition: 0.4s;
+                  &:hover{
+                    transform: scale(0.96);
+                }
+                } 
+                .log-out{
+                    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><path fill="%23FFFFFF" d="M59.1,30c-4.8-4.6-9.6-9.2-14.4-13.8c-0.3-0.3-0.6-0.6-0.9-0.8c-1.8-1.4-4-0.4-4.2,1.8 c-0.1,1.6-0.1,3.3-0.1,4.9c0,1.1,0,2.1,0,3.3c-4.7,0-9.2,0-13.6,0c-2.8,0-4,1.2-4,4.1c0,1.9,0,3.8,0,5.6c0,3.4,1.1,4.5,4.5,4.5 c4.3,0,8.6,0,13.1,0c0,0.6,0.1,1.2,0.1,1.7c0,2,0,4.1,0,6.1c0.1,1.8,1.5,3.1,3.1,2.7c0.7-0.2,1.4-0.7,2-1.2 c4.9-4.6,9.7-9.2,14.6-13.9C61.1,33.2,61,31.9,59.1,30z M21.5,50.4c-2.2,0-4.3,0-6.5,0c-2.5,0-3.9-1.2-3.9-3.8 c0-9.4-0.1-18.8,0-28.2c0-2.5,1.4-3.7,3.8-3.7c2.3,0,4.5,0,6.8,0c2.2,0,3.5-1.5,3.5-3.6c0-2-1.3-3.4-3.4-3.5 c-2.4-0.1-4.8-0.1-7.2,0c-5.9,0.3-10,4.2-10.3,10.1c-0.2,4.9,0,9.8,0,14.7c0,0,0,0,0,0c0,5.1-0.1,10.3,0,15.4 c0.1,4.2,3.1,8.1,7.2,8.9c3.3,0.7,6.7,0.5,10.1,0.6c2.3,0.1,3.7-1.4,3.7-3.5C25.2,51.8,23.8,50.5,21.5,50.4z"/></svg>');
+                    background-repeat: no-repeat;
+                    background-position: 12px;
+                    background-size: 20px 20px;
+                    background-color: $minima-orange;
+                }
+                .mobile-nav{
+                    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><path fill="%23FFFFFF" d="M9.3,16.8c7.5,0,15,0,22.5,0c7.5,0,15,0,22.5,0c0.6,0,1.2,0,1.7-0.1c1.9-0.5,2.9-2.2,2.7-4.3 C58.3,10.2,56.9,9,54.5,9C39.4,9,24.3,9,9.2,9C6.4,9,4.9,10.5,5,13C5,15.5,6.5,16.8,9.3,16.8z M9.3,35.9c7.5,0,15,0,22.5,0 c7.6,0,15.2,0,22.8,0c2.4,0,3.8-1.2,4-3.4c0.3-2.7-1.4-4.4-4.4-4.4c-6.8,0-13.7,0-20.5,0c-8.1,0-16.2,0-24.4,0 C6.5,28.1,5,29.5,5,32C4.9,34.5,6.5,35.9,9.3,35.9z M54.3,47.2c-15,0-30.1,0-45.1,0c-2.8,0-4.3,1.6-4.3,4c0,2.4,1.6,3.7,4.3,3.7 c7.5,0,15,0,22.5,0c7.5,0,15,0,22.5,0c0.6,0,1.2,0,1.7-0.1c1.9-0.5,2.9-2.2,2.7-4.3C58.3,48.4,56.9,47.2,54.3,47.2z"/></svg>');
+                    background-size: 20px 20px;
+                    background-position: 13px;
+                    background-repeat: no-repeat;
+                    background-color: $minima-quick-nav;
+                }
+            }
+        }
+    }
+}
+@media (max-width:359px){
+    .mn{
+        &-quick{
+            &-nav{
+                margin: 0 -3px;
+                > li{
+                    padding: 0 3px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:575px){
+    .hide-mb-sm{
+        display: none;
+    }
+}
+
+@include media-breakpoint-up(sm){
+    .mn{
+        &-header{
+            padding: 0 $header-main-gap-x-sm;
+        }
+    }
+}
+@include media-breakpoint-up(lg){
+    .mn{
+        &-header{
+            &-fluid{
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    }
+}
+@media (min-width:1660px){
+    .mn{
+        &-header{
+            &-fluid{
+                padding-left: 44px;
+                padding-right: 44px;
+            }
+        }
+    }
+}

@@ -1,0 +1,113 @@
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    getNodeId,
+    getRewards,
+    selectNodeId,
+    selectDailyRewards,
+    selectPreviousRewards,
+    selectLastPing,
+    selectInviterRewards,
+    selectInviteCode,
+} from './home.slice'
+
+const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' };
+
+function Home() {
+    // TODO Rename to dashboard
+    const dispatch = useDispatch()
+
+    const nodeId = useSelector(selectNodeId)
+    const tmpInviteCode = useSelector(selectInviteCode)
+    const inviteCode = tmpInviteCode ? 'https://incentive.minima.global/account/register?inviteCode=' + tmpInviteCode: tmpInviteCode;
+    const dailyRewards = useSelector(selectDailyRewards)
+    const previousRewards = useSelector(selectPreviousRewards)
+    const inviterRewards = useSelector(selectInviterRewards)
+    const lastPing = useSelector(selectLastPing) // can be null
+
+    const [nodeIdCopied, setNodeIdCopied] = useState(false)
+    const [inviteCodeCopied, setInviteCodeCopied] = useState(false)
+
+    useEffect(() => {
+        dispatch(getNodeId())
+        dispatch(getRewards())
+    }, [dispatch])
+
+    return (
+        <div className="jumbotron" style={{ position: 'relative', whiteSpace: 'break-spaces', backgroundColor: 'white' }}>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-sm-12 col-lg-6">
+                        <p onClick={() => {
+                            navigator.clipboard.writeText(nodeId)
+                            setInviteCodeCopied(false)
+                            setNodeIdCopied(true)
+                        }}>
+                            <span className="badge badge-dark">INCENTIVE ID</span> {nodeId} <span
+
+                                className="badge badge-pill badge-secondary" style={{ cursor: 'pointer' }}>{nodeIdCopied ? 'copied' : 'copy'}</span>
+                        </p>
+                        {inviteCode ?
+                            <p onClick={() => {
+                                navigator.clipboard.writeText(inviteCode)
+                                setInviteCodeCopied(true)
+                                setNodeIdCopied(false)
+                            }}>
+                                <span className="badge badge-dark">INVITE LINK</span> <span
+                                    className="badge badge-pill badge-secondary" style={{ cursor: 'pointer' }}>{inviteCodeCopied ? 'copied' : 'share'}</span>
+                            </p>
+                            : <></>}
+                        <p>
+                            <span className="badge badge-dark">DAILY REWARDS</span> {dailyRewards}
+                        </p>
+                        <p>
+                            <span className="badge badge-dark">PREVIOUS REWARDS</span> {previousRewards}
+                        </p>
+                        <p>
+                            <span className="badge badge-dark">INVITER REWARDS</span> {inviterRewards}
+                        </p>
+                        <p>
+                            <span className="badge badge-dark">LAST PING</span> {lastPing ? new Date(lastPing).toLocaleString(undefined, options) : '...'} { }
+                        </p>
+                        <br></br>
+                    </div>
+                    <div className="col-sm-12 col-lg-6">
+                        <ol style={{ paddingLeft: '20px' }}>
+                            <i>
+                                <li>Connect your Incentive Program account to your node.
+                                    <br /><br />
+                                    <ol>
+                                        <li>
+                                            <span style={{ textDecoration: 'underline' }}>Mobile App Users</span>
+                                            <br />
+                                            Download the <a href="https://github.com/minima-global/Minima/raw/master/jar/minima-0.100.32.apk">APK</a> on to your phone and install it.
+                                            <br />
+                                            Navigate to the 'Incentive Program' page within the App.
+                                            <br />
+                                            You can then copy your <span className="badge badge-dark">INCENTIVE ID</span> into the box and touch 'Update'.
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <span style={{ textDecoration: 'underline' }}>Desktop/Server Users</span>
+                                            <br />
+                                            Please follow the instructions at <a href="https://minima.global/run-a-node">minima.global/run-a-node</a>.
+                                        </li>
+                                    </ol>
+                                </li>
+                                <br />
+                                <li>Your node will then ping us automatically every few hours.</li>
+                                <br />
+                                <li>You can check it worked by refreshing this page. You should have a recent <span className="badge badge-dark">LAST PING</span>.
+                                    <br />
+                                    For every day your node is running, we'll add 1 Minima to your <span className="badge badge-dark">DAILY REWARDS</span>.
+                                </li>
+                            </i>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export { Home }

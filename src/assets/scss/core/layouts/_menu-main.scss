@@ -1,0 +1,155 @@
+
+// Menu Font
+$menu-link-ff: $alt-font-family !default;
+$menu-link-fs: $fx-sz-15 !default;
+$menu-link-fw: $fw-bold !default;
+$menu-link-lh: 1.25rem !default;
+$menu-link-ls: 0.01em !default;
+$menu-link-case: none !default;
+
+$menu-link-gap-y: .625rem !default;
+$menu-link-gap-x: $sidebar-gap-x !default;
+
+// Link color
+$menu-link-color-base:      lighten($base-text, 12%) !default;
+$menu-link-color-sub:       lighten($base-text, 12%) !default;
+$menu-link-color-hover:     lighten($accent-color, 5%) !default;
+$menu-border-color:         $border-color !default;
+$menu-border-dark-color:    rgba($white, .12) !default;
+
+// Menu Main Style
+$menu-main-link-color-base: $base-text !default;
+$menu-main-link-color-light: $base-light !default;
+$menu-main-link-color-sub:  $base-text !default;
+
+$menu-main-link-gap-y: .5rem !default;
+$menu-main-link-gap-x: 1.25rem !default;
+$menu-main-link-gap-x: 1.25rem !default;
+
+$menu-main-top-link-gap-y: 1.25rem !default;
+$menu-main-top-link-gap-x: 1rem !default;
+
+$menu-main-link-fs: $fx-sz-13 !default;         // @desktop only
+$menu-main-top-link-fs: $fx-sz-14 !default;     // @desktop only
+$menu-main-top-link-fb: $fx-sz-18 !default; 
+
+$menu-main-ddm-width: 200px !default;
+
+
+.mn-header{
+  &-menu{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      >ul{
+          margin:0;
+      }
+  }
+}
+
+.mn-menu-main{
+    .mn-menu{
+        &-link {
+            color: #222;
+            box-sizing: border-box;
+            transition: 0.4s;
+
+            font-weight: 600;
+            font-size: $menu-main-top-link-fs;
+            -webkit-font-smoothing: antialiased;
+
+            @include media-breakpoint-down(lg){
+              font-size: $menu-main-top-link-fb;
+            }
+
+            &.active {
+              // border-bottom: 4px solid $minima-blue;
+              box-sizing: border-box;
+              color: $minima-blue;
+             }
+        }
+        &-link:hover, &-link:focus, &-item.active > .mn-menu-link, &-item.current-menu > .mn-menu-link, &-item:hover > .mn-menu-link{
+            color: $menu-link-color-hover;
+            text-decoration: none;
+        }
+    }
+}
+
+@include media-breakpoint-down(md){
+    .mn-menu-main{
+        &.mn-menu{
+            max-height: calc(100vh - #{$header-height});
+            overflow: auto;
+            height: 100vh;
+            width: 100%;
+            padding: 0;
+            margin: 2rem 0 0 0;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg){
+    .mn-menu-main{
+        &.mn-menu{
+            padding: 0 1.5rem 0 2rem;
+        }
+        > li {
+            padding: 0;
+            display: inline-block;
+            @if($menu-main-link-gap-x != $menu-main-top-link-gap-x) {
+                &.mn-menu-item{
+                    padding: 0 $menu-main-top-link-gap-x;
+                    > .mn-menu-link{
+                        padding: $menu-main-top-link-gap-y 0;
+                        @if($menu-main-link-fs != $menu-main-top-link-fs) {
+                            font-size: $menu-main-top-link-fs;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@include media-breakpoint-down(lg){
+  .mn-header{
+    &-menu{
+      position: fixed;
+      overflow: hidden;
+      top: 6.9rem;
+      left: 0;
+      right: 0;
+      padding: 0;
+
+      ul{
+          li{
+              list-style: none;
+          }
+      }
+    }
+  }
+  .mn-menu-main{
+    &.mn-menu{
+      max-height: calc(100vh - #{$header-height});
+      overflow: auto;
+      height: 100vh;
+      width: 100%;
+      padding: 3rem 0 0 0;
+      margin: 0;
+      position: relative;
+      background-color: $white;
+      transition: top 0.6s;
+      transition-delay: 0.3s;
+      top: -100vh;
+
+      & >li{
+        padding: 20px 20px 30px 38px;
+      }
+      &.in.visible{
+        top: 0vh;
+      }
+    }
+  }
+}
+

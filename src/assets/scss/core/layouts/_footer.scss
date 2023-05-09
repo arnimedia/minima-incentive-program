@@ -1,0 +1,109 @@
+.mn{
+    &-footer{
+        background: $footer-bg-color;
+        border-top: 1px solid $footer-border-bottom;
+        padding: $footer-main-gap-y $footer-main-gap-x;
+        &.is-dark:not([class*=bg-]){
+            background: $footer-bg-dark-color;
+        }
+        &-wrap{
+            flex: 0 0 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        &-bottom{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          flex-direction: row-reverse;
+          @include media-breakpoint-down(md){
+            align-items: center;
+            flex-direction: column;
+            & > div{
+              margin-top: 1.5rem;
+            }
+          }
+        }
+        &-copyright{
+            color: $minima-copy;
+            font-size: 0.75rem;
+            a{
+                color: inherit;
+                &:hover{
+                    color: $minima-blue;
+                }
+            }
+        }
+        &-slogan{
+            font-size: 1.125rem;
+            line-height: normal;
+            font-weight: 500;
+            color: #767682;
+            & > span{
+                color: $black;
+                line-height: 1.8rem;
+            }
+            @include media-breakpoint-down(md){
+              width: 100%;
+              text-align: center;
+            }
+        }
+        &-links{
+            ul.nav{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                margin: 0;
+                li{
+                    text-align: right;
+                    @include media-breakpoint-down(md){
+                      text-align: center;
+                    }
+                    .nav-link{
+                        padding: 0;
+                    }
+                    a{
+                        color: $minima-copy;
+                        font-size: 0.75rem;
+                        &:hover{
+                            color: $minima-blue;
+                            text-decoration: underline;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm){
+    .mn{
+        &-footer{
+            padding: $footer-main-gap-y $footer-main-gap-x-sm;
+        }
+    }
+}
+@include media-breakpoint-up(lg){
+    .mn{
+        &-footer{
+            &-fluid{
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    }
+}
+@media (min-width:1660px){
+    .mn{
+        &-footer{
+            &-fluid{
+                padding-left: 44px;
+                padding-right: 44px;
+            }
+        }
+    }
+}
