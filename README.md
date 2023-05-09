@@ -3,9 +3,9 @@ What is the Minima Incentive Program?
 The Incentive Program is designed to reward you for installing and running a Minima node. You will receive one Reward every day your node pings us to let us know it is connected.
 ---
 
-![Preview](minima-incentive-program_1.png)
-![Preview](minima-incentive-program_2.png)
-![Preview](minima-incentive-program_3.png)
+![Preview](minima-incentive-program-1.png)
+![Preview](minima-incentive-program-2.png)
+![Preview](minima-incentive-program-3.png)
 
 As we test and improve Minima ahead of our Mainnet launch, your participation is precious to us. Together, we can collaboratively:
 
